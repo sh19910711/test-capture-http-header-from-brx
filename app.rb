@@ -1,4 +1,5 @@
 require "json"
+require "securerandom"
 
 class App < Padrino::Application
 
@@ -23,6 +24,16 @@ class App < Padrino::Application
 
   post "/some/api/with/custom/header" do
     headers "X-Hello" => "WORLD"
+    RESULT_OK
+  end
+
+  get "/some/api/with/random/header" do
+    headers "X-Hello" => SecureRandom.uuid
+    RESULT_OK
+  end
+
+  post "/some/api/with/random/header" do
+    headers "X-Hello" => SecureRandom.uuid
     RESULT_OK
   end
 
